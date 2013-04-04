@@ -89,10 +89,10 @@ ViewNavigator.prototype.clickMenu = function() {
 
     if (leftval == "0px") {
             this.header.animate({
-                left: "290px"
+                left: "260px"
             }, { duration: 200, queue: false });
             this.content.animate({
-                left: "290px"
+                left: "260px"
             }, { duration: 200, queue: false });
     }
     else {
