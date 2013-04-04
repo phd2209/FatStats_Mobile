@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no;" />
+
+    <link rel="stylesheet" href="css/viewnavigator.css" type="text/css" />
+    <link rel="stylesheet" href="css/styles.css" type="text/css" />
+</head>
+
+<body>
+    <div id="fb-root"></div>
+    <div id="viewNavigator_header" style="">
+        <div class="viewNavigator_header_title">FatStats</div>
+    </div>
+
+    <div id="categoriesView" style="height:100%; position:absolute; top:46px; padding: 0px; padding-top: 40px;">
+        <div class="activityIndicator"></div>
+    </div>
+
+    <!--
+    <div id="homeView" style="height:100%; position:absolute; top:46px; padding: 0px; padding-top: 40px;">
+        <div class="activityIndicator"></div>
+    </div>
+
+
+    <!-- USED FOR PRECACHING CSS STYLES AND ASSETS 
+    <div style="width:0px;height:0px;overflow: hidden; visibility: hidden">
+        <div class="viewNavigator_backButton" />
+        <div class="viewNavigator_backButton_active" />
+        <div class="viewNavigator_backButton:active" />
+        <div class="searchGraphic" />
+        <div class="header" />
+        <img src="assets/images/lettuce.jpg"/>
+        <img src="assets/images/iOSbackButton.png"/>
+        <img src="assets/images/iOSbackButton_active.png"/>
+        <img src="assets/images/usa.png" />
+        <img src="assets/images/walk/52bf27.png" />
+        <img src="assets/images/walk/e87562.png" />
+        <img src="assets/images/walk/e8da62.png" />
+        <ul class="data-list"><li>test</li></ul>
+    </div>
+        -->
+
+    <!-- Navigation menu -->
+    <div id="navmenu">  
+        <header>  
+            Menu  
+        </header>        
+        <ul>  
+            <li><a rel="external" class="navlink" onclick="window.viewNavigator.clickMenu(); window.viewNavigators[window.viewNavigator.uniqueId].popView()">Kategorier</a></li>
+            <li><a rel="external" class="navlink" onclick="window.viewNavigator.clickMenu(); var view = new LikesIndexView({model: likeindex}); window.viewNavigator.pushView(view);">Like index</a></li>
+            <li><a rel="external" href="#Likes" class="navlink">Billeder</a></li>  
+        </ul>  
+    </div>
+
+
+</body>
+
+<!-- LIBS -->
+<script src="js/libs/jquery-1.9.1.min.js"></script>
+<script src="js/libs/jquery.animate-enhanced.js"></script>
+<script src="js/libs/iscroll.js"></script>
+<script src="js/libs/underscore-min.js"></script>
+<script src="js/libs/backbone-min.js"></script>
+<script src="js/libs/noClickDelay.js"></script>
+<script src="js/libs/viewnavigator.js"></script>
+
+
+<!--<script src="cordova-2.0.0.js"></script>-->
+
+<!-- APP SCRIPTS -->
+<script src="js/TemplateManager.js"></script>
+<script src="js/views/CategoriesView.js"></script>
+<script src="js/views/CategoryItemView.js"></script>
+<script src="js/views/LikesView.js"></script>
+<script src="js/views/LikesIndexView.js"></script>
+<!--<script src="js/views/ListItemView.js"></script>
+<script src="js/views/ItemDetailView.js"></script>
+<script src="js/views/MapView.js"></script>
+<script src="js/views/MapDetailsView.js"></script>
+<script src="js/views/CuisineView.js"></script>
+<script src="js/views/InvalidLocationView.js"></script>
+<script src="js/util/NativeUtil.js"></script>
+<script src="js/util/GeoWatcher.js"></script>
+<script src="js/util/HTMLUtil.js"></script>
+<script src="js/util/POIUtil.js"></script>
+<script src="js/model/SearchManager.js"></script>-->
+<script src="js/main.js"></script>
+<script src="js/facebook.js"></script>
+
+</html>

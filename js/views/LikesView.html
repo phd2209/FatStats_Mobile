@@ -1,0 +1,24 @@
+<div class="header gpu">
+    <h1>Likes in Category</h1>
+</div>
+
+<% if ((typeof(Likes) != "undefined") && Likes.length > 0) { %>
+    <ul class="data-list" id="list" style="background-color: white; margin:0px; padding:0px; border-bottom: 1px solid #CCC;">
+        <% for ( var x=0; x < Likes.length; x++ ){ var like = Likes[x];%>          
+            <li>
+            <strong id="Strong1"><%= like.name %></strong><br/>
+            <strong class="count">Likes:<%= like.cnt %></strong>
+            <strong class="pct">Pct:<%= like.pct %></strong>
+            </li>        
+        <% } %>
+    </ul>
+<% } else { %>
+    <div style="padding:10px;">
+        <div class="alert alert-error" >
+            No Likes found.
+        </div>
+    </div>
+    <div style="padding:25px; text-align: center;">
+        <img src="assets/images/error.png" />
+    </div>
+<% } %>

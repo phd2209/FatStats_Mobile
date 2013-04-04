@@ -1,0 +1,27 @@
+<div class="header gpu">
+    <h1>LikesIndex</h1>
+</div>
+
+<% if ((typeof(LikesIndex) != "undefined") && LikesIndex.length > 0) { %>
+    <ul class="data-list" id="list" style="background-color: white; margin:0px; padding:0px; border-bottom: 1px solid #CCC;">
+        <% for ( var x=0; x < LikesIndex.length; x++ ){ var like = LikesIndex[x];%>          
+            <% if (like.sex === "Total") { %>
+            <li>
+            <strong class="test">Min likes: <%= like.minlikecount %></strong><br/>
+            <strong class="count">Avg likes: <%= like.avglikecount %></strong><br/>
+            <strong class="count">your likes: <%= like.youlikecount %></strong><br/>
+            <strong class="count">Max likes: <%= like.maxlikecount %></strong><br/>            
+            </li>
+        <% } %>        
+        <% } %>
+    </ul>
+<% } else { %>
+    <div style="padding:10px;">
+        <div class="alert alert-error" >
+            No Likes found.
+        </div>
+    </div>
+    <div style="padding:25px; text-align: center;">
+        <img src="assets/images/error.png" />
+    </div>
+<% } %>

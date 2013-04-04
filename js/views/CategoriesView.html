@@ -1,0 +1,16 @@
+<div class="header gpu">
+    <h1>Categories</h1>
+</div>
+
+<% if ((typeof(Categories) != "undefined") && Categories.length > 0) { %>
+    <ul class="data-list" id="list" style="background-color: white; margin:0px; padding:0px; border-bottom: 1px solid #CCC;"></ul>
+<% } else { %>
+    <div style="padding:10px;">
+        <div class="alert alert-error" >
+            No categories found.
+        </div>
+    </div>
+    <div style="padding:25px; text-align: center;">
+        <img src="assets/images/error.png" />
+    </div>
+<% } %>
