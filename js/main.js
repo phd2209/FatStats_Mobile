@@ -101,11 +101,14 @@ function appTemplatesLoaded() {
     //var homeView = new HomeView();
     
     var categoriesView = new CategoriesView();
+    var loginView = new LoginView();
+
     //var likeIndexView = new likeIndexView();
     //Setup the ViewNavigator
     window.viewNavigator = new ViewNavigator( 'body' );	
     //window.viewNavigator.pushView( homeView );
-    window.viewNavigator.pushView(categoriesView);
+    //window.viewNavigator.pushView(categoriesView);
+    window.viewNavigator.pushView(loginView);
     document.addEventListener("backbutton", onBackKey, false);
 }
 

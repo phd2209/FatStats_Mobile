@@ -48,9 +48,9 @@
             Menu  
         </header>        
         <ul>  
-            <li><a rel="external" class="navlink" onclick="window.viewNavigator.clickMenu(); window.viewNavigators[window.viewNavigator.uniqueId].popView()">Kategorier</a></li>
+            <!--<li><a rel="external" class="navlink" onclick="window.viewNavigator.clickMenu(); window.viewNavigators[window.viewNavigator.uniqueId].popView()">Kategorier</a></li>-->
+            <li><a rel="external" class="navlink" onclick="window.viewNavigator.clickMenu(); window.viewNavigators.popView(categoriesView)">Kategorier</a></li>
             <li><a rel="external" class="navlink" onclick="window.viewNavigator.clickMenu(); var view = new LikesIndexView({model: likeindex}); window.viewNavigator.pushView(view);">Like index</a></li>
-            <li><a rel="external" href="#Likes" class="navlink">Billeder</a></li>  
         </ul>  
     </div>
 
@@ -75,8 +75,8 @@
 <script src="js/views/CategoryItemView.js"></script>
 <script src="js/views/LikesView.js"></script>
 <script src="js/views/LikesIndexView.js"></script>
-<!--<script src="js/views/ListItemView.js"></script>
-<script src="js/views/ItemDetailView.js"></script>
+<script src="js/views/LoginView.js"></script>
+<!--<script src="js/views/ItemDetailView.js"></script>
 <script src="js/views/MapView.js"></script>
 <script src="js/views/MapDetailsView.js"></script>
 <script src="js/views/CuisineView.js"></script>
