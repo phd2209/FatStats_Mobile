@@ -12,11 +12,16 @@ window.LoginView = Backbone.View.extend({
     },
 
     events: {
+        'click .login': 'login'
     },
 
     render: function (eventName) {
         //var model = this.model;
         this.$el.html(this.template({ }));
         this.$el.css("background", "white");
+    },
+    login: function () {
+        $(document).trigger('login');
+        return false;
     }
 });
