@@ -182,3 +182,88 @@ function onBackKey( event ) {
 }
 
 document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+//Gets all data first categories, second likes for top category;
+function data_fetch_all() {
+    console.log("Number of users: " + userCollection.length);
+    getCategories();
+    //outputCategories();
+    //getLikes(categories[0].category);
+    //console.log("Length of selectedcats: " + selectedcats.length);
+    //console.log(selectedcats);
+    //outputLikes();
+    //console.log("Length of likeindex: " + likeindex.length);
+    //console.log(likeindex);
+    //console.log("Length if selectedlikes: " + selectedlikes.length);
+    //console.log(selectedlikes);
+    //outputLikes();
+}
+
+//Gets the top10 categories - called from data_fetch_all;
+function getCategories() {
+
+    var totalLikes = 0;
+    var sex;
+    var number = 30;
+    var usersWithLikes = 0;
+
+    for (var j = 0; j < userCollection.length; j++) {
+        var obj = userCollection[j];
+        totalLikes = totalLikes + obj.likescount;
+        //insertLikeIndex(likeindex, userCollection[j].likescount, "Total");
+
+        if (obj.likes != undefined | obj.likes == null) {
+            usersWithLikes = (obj.likes.length > 0) ? usersWithLikes + 1 : usersWithLikes + 0;
+            for (var i = 0; i < obj.likes.length; i++) {
+
+                if (userCollection[j].likes[i].category.toLowerCase() != "community") {
+                    insertCategory(categories, userCollection[j].likes[i].category, "Total");
+                }
+            };
+        }
+    };
+
+    //console.log("Friends with Likes: " + usersWithLikes);
+    //console.log("Total Likes: " + totalLikes);
+    //console.log("Number of Categories: " + categories.length);
+
+    sortByNum(categories);
+    selectedcats = categories.slice(0, Math.min(categories.length, number));
+
+    for (var j = 0; j < userCollection.length; j++) {
+        var obj = userCollection[j];
+
+        sex = obj.sex;
+        //insertLikeIndex(likeindex, userCollection[j].likescount, sex);
+        for (var i = 0; i < obj.likes.length; i++) {
+
+            for (var h = 0; h < selectedcats.length; h++) {
+                if (selectedcats[h].category === userCollection[j].likes[i].category && sex != undefined) {
+                    insertCategory(selectedcats, userCollection[j].likes[i].category, sex);
+                    break;
+                }
+
+            }
+        };
+    };
+    CalculatePct(selectedcats);
+}
+
+//Utitlity function to calculate pct;
+function CalculatePct(list) {
+    var total = 0;
+
+    for (var h = 0; h < list.length; h++) {
+        total = (list[h].sex.toLowerCase() === "total") ? total + list[h].cnt : total + 0;
+    }
+
+    for (var h = 0; h < list.length; h++) {
+        list[h].pct = Math.round(list[h].cnt / total * 100);
+    }
+}
+//Utitlity function to sort an array;
+function sortByNum(list) {
+    list.sort(function (b, a) {
+        return a.cnt - b.cnt;
+    })
+}
