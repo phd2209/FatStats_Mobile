@@ -1,6 +1,7 @@
 var fbid;
 var fetches;
 var userCollection = new Array();
+var categories = [];
 
 var selectedcats = [{ category:"Musician/band", cnt:671, pct:23, sex:"Total"}, 
         { category:"Local business", cnt:487, pct:17, sex:"Total"},
@@ -61,22 +62,11 @@ $(document).ready(function () {
     onDeviceReady();
 });
 
-/*
-$(document).on('fbStatusChange', function (event, data) {
-    if (data.status === 'connected') {
-        FB.api('/me', function (response) {
-            //fb.user.set(response); // Store the newly authenticated FB user
-        });
-    } else {
-        //fb.user.set(fb.user.defaults); // Reset current FB user
-    }
-});
-
 $(document).on('logout', function () {
     FB.logout();
     return false;
 });
-*/
+
 $(document).on('login', function () {
     FB.login(function (response) {
     }, { scope: 'email,user_likes,user_photos,friends_likes' });
@@ -86,6 +76,7 @@ $(document).on('login', function () {
 function onDeviceReady() {
     //FB.init({ appId: "465374093524857", /*nativeInterface: CDV.FB,*/ useCachedDialogs: false, status: true });
     FB.init({ appId: "465374093524857", nativeInterface: CDV.FB, useCachedDialogs: false, status: true });
+
     FB.Event.subscribe('auth.statusChange', function (event) {
         if (event.status === 'connected') {
 
@@ -145,14 +136,10 @@ function onDeviceReady() {
                         });
 
                         //Run data_fetch_all function when fetches reaches 0
-                        if (fetches === 0) { showLoader(false); data_fetch_all(); };
+                        if (fetches === 0) { data_fetch_postproc(); };
                     });
                 }
             });
-
-            var categoriesView = new CategoriesView();
-            window.viewNavigator.pushView(categoriesView);
-
         } else {
             //fb.user = null; // Reset current FB user
             //fb.router.navigate("", { trigger: true });
@@ -187,6 +174,11 @@ document.addEventListener('touchmove', function (e) { e.preventDefault(); }, fal
 function data_fetch_all() {
     console.log("Number of users: " + userCollection.length);
     getCategories();
+
+    console.log("Length of selectedcats: " + selectedcats.length);
+    //console.log(selectedcats);
+    var categoriesView = new CategoriesView();
+    window.viewNavigator.pushView(categoriesView);
     //outputCategories();
     //getLikes(categories[0].category);
     //console.log("Length of selectedcats: " + selectedcats.length);
@@ -202,10 +194,12 @@ function data_fetch_all() {
 //Gets the top10 categories - called from data_fetch_all;
 function getCategories() {
 
+
     var totalLikes = 0;
     var sex;
     var number = 30;
     var usersWithLikes = 0;
+    selectedcats.length = 0;
 
     for (var j = 0; j < userCollection.length; j++) {
         var obj = userCollection[j];
@@ -266,4 +260,18 @@ function sortByNum(list) {
     list.sort(function (b, a) {
         return a.cnt - b.cnt;
     })
+}
+
+//Inserts categories into into an array;
+function insertCategory(list, cat, sex) {
+
+    for (var i = 0; i < list.length; i++) {
+        if (cat === list[i].category && sex === list[i].sex) {
+            list[i].cnt += 1;
+            return;
+        }
+    }
+    var obj;
+    obj = { "category": cat, "cnt": 1, "sex": sex };
+    list.push(obj);
 }
